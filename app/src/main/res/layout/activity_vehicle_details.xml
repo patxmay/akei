@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <!-- Nom du véhicule -->
+            <TextView
+                android:id="@+id/vehiculeNom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nom du véhicule"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:paddingBottom="8dp"/>
+
+            <!-- Marque -->
+            <TextView
+                android:id="@+id/vehiculeMarque"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Marque : --"
+                android:paddingBottom="8dp"/>
+
+            <!-- Dimensions -->
+            <TextView
+                android:id="@+id/vehiculeDimensions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dimensions : --"
+                android:paddingBottom="8dp"/>
+
+            <!-- Carburant -->
+            <TextView
+                android:id="@+id/vehiculeCarburant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Carburant : --"
+                android:paddingBottom="8dp"/>
+
+            <!-- Kilométrage -->
+            <TextView
+                android:id="@+id/vehiculeKm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kilométrage : --"
+                android:paddingBottom="8dp"/>
+
+            <!-- Bouton Retour -->
+            <Button
+                android:id="@+id/btnRetourVehicule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Retour"
+                android:padding="8dp"
+                android:backgroundTint="@color/teal_700"/>
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
