@@ -32,10 +32,14 @@ Pour les autres axes, la fonctionnalité de recherche se basera sur les critère
 
 Conseils techniques pour la mise au point de votre application
 Deux approches sont possibles pour générer les listes sur les deux premiers écrans : 
+
 1 - Approche par ListView : 
+
 Le type ListView peut être utilisé pour lister les éléments, ce type d'objet est proche du Spinners dans son implémentation. Cependant quelques adaptations sont nécessaires.
 La consultation d’une liste s’appuiera d’abord sur un simple Adapter, puis devra basculer vers un Adapter plus élaboré pour pouvoir visualiser de façon plus confortable les propriétés d’un objet métier, et arriver à la maquette dessinée. 
 La consultation de la liste mineure sera mise au point en affichant d’abord l’item de liste majeure qui a été sélectionné. Puis la visualisation de la liste mineure pourra alors être mise au point. 
+
 2 - Approche par LinearLayout : 
+
 Il est possible de ne pas faire appel aux ListView et générer l'affichage à l'aide de layouts. Dans ce cas, aucun Adapter n'est nécessaire. Cependant cette solution demande potentiellement davantage de code.
 
