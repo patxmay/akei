@@ -10,6 +10,7 @@ Dans chaque magasin, les employés sont spécialisés par pièce.
 
 Par exemple Jean Baptiste est toujours affecté à l’espace chambre (on parle aussi de rayon). 
 Il doit connaître, ou du moins pouvoir renseigner au mieux les clients sur l’ensemble des produits de son espace :  
+
 nom, 
 description technique, 
 prix, 
@@ -24,25 +25,31 @@ Un service de location est disponible dans chaque magasin où le client peut lou
 Chaque magasin a un parc de véhicules. Les clients peuvent choisir parmi ces véhicules celui qui leur semble le plus adapté.
 
 Par exemple le Fiat Ducato de 20m3 a les dimensions intérieures suivantes : 
+
 longueur : 2670mm, 
 largeur : 1870mm, 
 hauteur : 1662mm 
+
 On enregistre aussi 
+
 la plaque d’immatriculation, 
 le type de carburant, et 
 le nombre de km actuel.
 
 L’application mobile (développée sous Android Studio en java) destinée aux employés d’Akei doit permettre de répondre facilement aux questions des clients sur les trois thèmes suivants: 
+
 les produits et leurs caractéristiques
 les camions disponibles à la locations
 les employés et leurs spécialités
 
 Les objectifs fixés dans ce contexte sont, dans un premier temps, la visualisation d’informations sur un téléphone mobile selon trois axes :
-obtenir la liste des rayons et pour chacun d'entre eux les produits et leurs caractéristiques.
-obtenir la liste complète des magasins Akei proposant des locations, puis les véhicules proposés ainsi que leurs caractéristiques
-obtenir l'ensemble des rayons du magasin, et pour chacun d'entre eux, les employés spécialisés ainsi que leurs caractéristiques.
+
+axe 1 - obtenir la liste des rayons et pour chacun d'entre eux les produits et leurs caractéristiques.
+axe 2 - obtenir la liste complète des magasins Akei proposant des locations, puis les véhicules proposés ainsi que leurs caractéristiques
+axe 3 - obtenir l'ensemble des rayons du magasin, et pour chacun d'entre eux, les employés spécialisés ainsi que leurs caractéristiques.
 
 Pour ces trois axes, l’affichage devra être réalisé sur un même principe :
+
 Affichage d’une liste principale, et, sur sélection d’un élément de la liste, affichage de la « sous liste ». 
 Après avoir sélectionné un élément de la sous-liste l’application affiche en détail l’élément sélectionné. 
 
@@ -51,6 +58,7 @@ Un champ de recherche doit être disponible dans la 2ème interface pour permett
 Pour les autres axes, la fonctionnalité de recherche se basera sur les critères suivants : Véhicules (nom, marque, capacité) et Employés (nom, prenom, nom du magasin.)
 
 Conseils techniques pour la mise au point de votre application
+
 Deux approches sont possibles pour générer les listes sur les deux premiers écrans : 
 
 1 - Approche par ListView : 
