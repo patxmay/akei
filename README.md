@@ -2,20 +2,20 @@ La société Akei est spécialisée dans la vente de meubles et de produits de l
 
 Les produits sont visibles dans la partie exposition du magasin et sont organisés par « pièce » de la maison : 
  
-chambre,  
-cuisine,  
-séjour. 
+* chambre,  
+* cuisine,  
+* séjour. 
 
 Dans chaque magasin, les employés sont spécialisés par pièce.
 
 Par exemple Jean Baptiste est toujours affecté à l’espace chambre (on parle aussi de rayon). 
 Il doit connaître, ou du moins pouvoir renseigner au mieux les clients sur l’ensemble des produits de son espace :  
  
-nom, 
-description technique, 
-prix, 
-dimensions, 
-poids.
+* nom, 
+* description technique, 
+* prix, 
+* dimensions, 
+* poids.
  
 Lorsque les équipiers se déplacent dans le magasin, il arrive parfois que des clients interrogent un employé sur un domaine qu’il ne connaît pas. 
 Il faudrait que l’employé puisse orienter le client vers un de ses collègues en charge du produit dont il est question.
@@ -26,9 +26,9 @@ Chaque magasin a un parc de véhicules. Les clients peuvent choisir parmi ces v�
  
 Par exemple le Fiat Ducato de 20m3 a les dimensions intérieures suivantes : 
  
-longueur : 2670mm, 
-largeur : 1870mm, 
-hauteur : 1662mm 
+* longueur : 2670mm, 
+* largeur : 1870mm, 
+* hauteur : 1662mm 
 
 On enregistre aussi 
 
@@ -50,8 +50,8 @@ axe 3 - obtenir l'ensemble des rayons du magasin, et pour chacun d'entre eux, le
 
 Pour ces trois axes, l’affichage devra être réalisé sur un même principe :
 
-Affichage d’une liste principale, et, sur sélection d’un élément de la liste, affichage de la « sous liste ». 
-Après avoir sélectionné un élément de la sous-liste l’application affiche en détail l’élément sélectionné. 
+* Affichage d’une liste principale, et, sur sélection d’un élément de la liste, affichage de la « sous liste ». 
+* Après avoir sélectionné un élément de la sous-liste l’application affiche en détail l’élément sélectionné. 
 
 Un champ de recherche doit être disponible dans la 2ème interface pour permettre à l'utilisateur de filtrer les résultats selon le mot saisi. Le mot en question recherchera dans le nom du produit et dans ses caractéristiques.
 
