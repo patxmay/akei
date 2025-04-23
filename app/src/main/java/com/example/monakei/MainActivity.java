@@ -39,7 +39,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selectedCategory = categories.get(position);
-                Intent intent = new Intent(MainActivity.this, Rayon.class);
+                // afficher les informations du rayon via la classe RayonsActivity
+                Intent intent;
+                switch(selectedCategory){
+                    case "Produits":
+                        intent = new Intent(MainActivity.this, ProduitActivity.class);
+                        break;
+                    case "Magasins":
+                        intent = new Intent(MainActivity.this, RayonActivity.class);
+                        break;
+                    case "Employés":
+                        intent = null;
+                        break;
+                    default:
+                        intent = null;
+                        break;
+                }
                 intent.putExtra("category", selectedCategory);
                 startActivity(intent);
             }
