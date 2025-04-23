@@ -1,4 +1,5 @@
 package com.example.monakei;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Rayon {
@@ -12,6 +13,11 @@ public class Rayon {
         this.listeEmployes = listeEmployes;
     }
 
+    public Rayon(String nom) {
+        this.nom = nom;
+        this.listeProduits = new ArrayList<>();
+        this.listeEmployes = new ArrayList<>();
+    }
     public String getNom() { return nom; }
     public List<Produit> getListeProduits() { return listeProduits; }
     public List<Employe> getListeEmployes() { return listeEmployes; }

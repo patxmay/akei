@@ -1,9 +1,7 @@
 package com.example.monakei;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,6 +16,13 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        AkeiDatabaseHelper dbHelper = new AkeiDatabaseHelper(this);
+        //SQLiteDatabase db = dbHelper.getWritableDatabase();
+        //dbHelper.deleteData(db);
+        /* dbHelper.InsertData(db); */
+        //DataSeeder.inserrDatas(db);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -34,10 +39,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selectedCategory = categories.get(position);
-                Intent intent = new Intent(MainActivity.this, ListeActivity.class);
+                Intent intent = new Intent(MainActivity.this, Rayon.class);
                 intent.putExtra("category", selectedCategory);
                 startActivity(intent);
             }
         });
+
     }
+
+
 }
