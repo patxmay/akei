@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                     case "Produits":
                         intent = new Intent(MainActivity.this, ProduitActivity.class);
                         break;
-                    case "Magasins":
+                    case "Rayons":
                         intent = new Intent(MainActivity.this, RayonActivity.class);
                         break;
                     case "Employés":

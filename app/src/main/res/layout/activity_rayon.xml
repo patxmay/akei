@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RayonsActivity">
+    tools:context=".RayonActivity">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -21,9 +21,9 @@
             android:drawableStart="@android:drawable/ic_menu_search"
             android:padding="8dp" />
 
-        <!-- Liste des rayons -->
+        <!-- element Listview pour afficher la Liste des rayons -->
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewRayons"
+            android:id="@+id/rayonListView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="8dp"/>

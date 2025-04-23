@@ -86,6 +86,10 @@ public class AkeiDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DELETE FROM rayon");
         db.execSQL("DELETE FROM produit");
     }
+    public Cursor getAllRayons() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM rayons", null);
+    }
     public void InsertData(SQLiteDatabase db){
         Cursor cursor;
         ContentValues values = new ContentValues();
