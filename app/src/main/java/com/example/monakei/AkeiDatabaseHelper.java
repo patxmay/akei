@@ -7,6 +7,7 @@ import android.content.Context; // Import added
 import android.database.Cursor;
 import android.util.Log;
 
+import java.util.ArrayList;
 public class AkeiDatabaseHelper extends SQLiteOpenHelper {
 
 
@@ -88,7 +89,19 @@ public class AkeiDatabaseHelper extends SQLiteOpenHelper {
     }
     public Cursor getAllRayons() {
         SQLiteDatabase db = this.getReadableDatabase();
-        return db.rawQuery("SELECT * FROM rayons", null);
+        return db.rawQuery("SELECT * FROM magasins", null);
+    }
+    public ArrayList<String> getAllMagasins() {
+        ArrayList<String> magasins = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT nom FROM magasin", null);
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                magasins.add(cursor.getString(cursor.getColumnIndexOrThrow("nom")));
+            }
+            cursor.close();
+        }
+        return magasins;
     }
     public void InsertData(SQLiteDatabase db){
         Cursor cursor;

@@ -36,5 +36,13 @@
             android:textSize="18sp"
             android:textColor="@android:color/black" />
 
+        <TextView
+            android:id="@+id/magasinTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Magasin sélectionnée"
+            android:textSize="18sp"
+            android:textColor="@android:color/black" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,30 +11,44 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    /*
     private ListView listView;
     private ArrayList<String> categories;
+    */
+    private ListView magasinListView;
+    private ArrayList<String> magasins;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         AkeiDatabaseHelper dbHelper = new AkeiDatabaseHelper(this);
-        //SQLiteDatabase db = dbHelper.getWritableDatabase();
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
         //dbHelper.deleteData(db);
         /* dbHelper.InsertData(db); */
         //DataSeeder.inserrDatas(db);
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        listView = findViewById(R.id.listView);
-        categories = new ArrayList<>();
-        categories.add("Produits");
-        categories.add("Magasins");
-        categories.add("Employés");
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, categories);
-        listView.setAdapter(adapter);
-
+        // Charger le layout activity_magasin.xml
+        setContentView(R.layout.activity_magasin);
+        // Charger les magasins depuis la base de données
+        // Initialiser le ListView
+        magasinListView = findViewById(R.id.magasinListView);
+        // Charger les magasins depuis la base de données
+        magasins = dbHelper.getAllMagasins();
+        ArrayAdapter<String>  adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, magasins);
+        magasinListView.setAdapter(adapter);
+        // Ajouter un écouteur pour détecter les clics sur les magasins
+        magasinListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String selectedMagasin = magasins.get(position);
+                // Lancer RayonActivity avec le magasin sélectionné
+                Intent intent = new Intent(MainActivity.this, RayonActivity.class);
+                intent.putExtra("selectedMagasin", selectedMagasin);
+                startActivity(intent);
+            }
+        });
+        /*
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -59,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        */
     }
 
 

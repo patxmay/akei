@@ -26,19 +26,29 @@ public class RayonActivity extends AppCompatActivity {
         */
         // Récupérer la catégorie sélectionnée via l'Intent
         ////String selectedCategory = getIntent().getStringExtra("category");
-
         // Trouver le TextView et définir le texte
         ////TextView textView = findViewById(R.id.categoryTextView);
         ////textView.setText("Vous avez sélectionné : " + selectedCategory);
 
         // Initialiser la liste et l'adaptateur
-        rayons = new ArrayList<>();
-        rayonListView = findViewById(R.id.rayonListView);
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, rayons);
-        rayonListView.setAdapter(adapter);
-
+        //rayons = new ArrayList<>();
+        //rayonListView = findViewById(R.id.rayonListView);
+        //adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, rayons);
+        //rayonListView.setAdapter(adapter);
         // Charger les rayons depuis la base de données
-        loadRayonsFromDatabase();
+        //loadRayonsFromDatabase();
+
+        // On récupére le magasin sélectionné via l'intent et l'utiliser
+        // pour afficher les rayons associés à ce magasin.
+        setContentView(R.layout.activity_rayon);
+
+        // Récupérer le magasin sélectionné
+        String selectedMagasin = getIntent().getStringExtra("selectedMagasin");
+
+        // Utiliser le nom du magasin sélectionné pour afficher les rayons
+        TextView magasinTextView = findViewById(R.id.magasinTextView);
+        magasinTextView.setText("Magasin sélectionné : " + selectedMagasin);
+
     }
 
     private void loadRayonsFromDatabase() {
