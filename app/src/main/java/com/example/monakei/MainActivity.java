@@ -11,10 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    /*
-    private ListView listView;
-    private ArrayList<String> categories;
-    */
     private ListView magasinListView;
     private ArrayList<String> magasins;
 
@@ -23,14 +19,13 @@ public class MainActivity extends AppCompatActivity {
 
         AkeiDatabaseHelper dbHelper = new AkeiDatabaseHelper(this);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        //dbHelper.deleteData(db);
+        dbHelper.deleteData(db);
         /* dbHelper.InsertData(db); */
-        //DataSeeder.inserrDatas(db);
+        DataSeeder.inserrDatas(db);
 
         super.onCreate(savedInstanceState);
         // Charger le layout activity_magasin.xml
         setContentView(R.layout.activity_magasin);
-        // Charger les magasins depuis la base de données
         // Initialiser le ListView
         magasinListView = findViewById(R.id.magasinListView);
         // Charger les magasins depuis la base de données
@@ -48,33 +43,5 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        /*
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String selectedCategory = categories.get(position);
-                // afficher les informations du rayon via la classe RayonsActivity
-                Intent intent;
-                switch(selectedCategory){
-                    case "Produits":
-                        intent = new Intent(MainActivity.this, ProduitActivity.class);
-                        break;
-                    case "Rayons":
-                        intent = new Intent(MainActivity.this, RayonActivity.class);
-                        break;
-                    case "Employés":
-                        intent = null;
-                        break;
-                    default:
-                        intent = null;
-                        break;
-                }
-                intent.putExtra("category", selectedCategory);
-                startActivity(intent);
-            }
-        });
-        */
     }
-
-
 }

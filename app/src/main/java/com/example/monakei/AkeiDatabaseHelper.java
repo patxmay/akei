@@ -87,9 +87,9 @@ public class AkeiDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DELETE FROM rayon");
         db.execSQL("DELETE FROM produit");
     }
-    public Cursor getAllRayons() {
+    public Cursor getAllRayons(int magasin) {
         SQLiteDatabase db = this.getReadableDatabase();
-        return db.rawQuery("SELECT * FROM magasins", null);
+        return db.rawQuery("SELECT * FROM rayon wher id_mag="+magasin, null);
     }
     public ArrayList<String> getAllMagasins() {
         ArrayList<String> magasins = new ArrayList<>();

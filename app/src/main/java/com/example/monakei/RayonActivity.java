@@ -49,6 +49,7 @@ public class RayonActivity extends AppCompatActivity {
         TextView magasinTextView = findViewById(R.id.magasinTextView);
         magasinTextView.setText("Magasin sélectionné : " + selectedMagasin);
 
+        loadRayonsFromDatabase();
     }
 
     private void loadRayonsFromDatabase() {
