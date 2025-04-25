@@ -3,6 +3,7 @@ import java.util.List;
 import  java.util.ArrayList;
 
 public class Magasin {
+    private Integer id_mag;
     private String nom;
     private String adresse;
     private List<Rayon> listeRayons;
@@ -17,6 +18,11 @@ public class Magasin {
         this.listeEmployes = listeEmployes;
     }
 
+    public Magasin(Integer id_mag, String nom) {
+        this.id_mag = id_mag;
+        this.nom = nom;
+    }
+
     // New constructor
     public Magasin(String nom, String adresse) {
         this.nom = nom;
@@ -25,6 +31,8 @@ public class Magasin {
         this.listeVehicules = new ArrayList<>();
         this.listeEmployes = new ArrayList<>();
     }
+    public int getId() { return id_mag; }
+
     public String getNom() { return nom; }
     public String getAdresse() { return adresse; }
     public List<Rayon> getListeRayons() { return listeRayons; }
@@ -37,6 +45,10 @@ public class Magasin {
     public void setListeVehicules(List<Vehicule> listeVehicules) { this.listeVehicules = listeVehicules; }
     public void setListeEmployes(List<Employe> listeEmployes) { this.listeEmployes = listeEmployes; }
 
+    @Override
+    public String toString() {
+        return nom; // Retourner le nom du magasin pour l'affichage
+    }
     public void ajouterRayon(Rayon r) {
         // cette fonction permet de garder le controle dans la classe Magasin
         // // sur ce qu’on peut ajouter ou non (ex. verifier qu’il n’y a pas de doublon, etc.).

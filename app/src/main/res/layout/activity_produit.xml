@@ -22,19 +22,11 @@
             android:padding="8dp"/>
 
         <!-- Liste des produits -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewProduits"
+        <ListView
+            android:id="@+id/produitListView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="8dp"/>
-
-        <TextView
-            android:id="@+id/categoryTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Catégorie sélectionnée"
-            android:textSize="18sp"
-            android:textColor="@android:color/black" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

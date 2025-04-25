@@ -1,6 +1,7 @@
 package com.example.monakei;
 
 public class Produit {
+    private Integer id_prod;
     private String nom;
     private String description;
     private double prix;
@@ -14,7 +15,11 @@ public class Produit {
         this.dimensions = dimensions;
         this.poids = poids;
     }
-
+    public Produit(Integer id_prod, String nom) {
+        this.nom = nom;
+        this.id_prod = id_prod;
+    }
+    public int getId() { return id_prod; }
     public String getNom() { return nom; }
     public String getDescription() { return description; }
     public double getPrix() { return prix; }

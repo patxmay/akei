@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Rayon {
+    private Integer id_ray;
     private String nom;
     private List<Produit> listeProduits;
     private List<Employe> listeEmployes;
@@ -13,11 +14,18 @@ public class Rayon {
         this.listeEmployes = listeEmployes;
     }
 
+    public Rayon(Integer id_ray, String nom) {
+        this.id_ray = id_ray;
+        this.nom = nom;
+        this.listeProduits = listeProduits;
+        this.listeEmployes = listeEmployes;
+    }
     public Rayon(String nom) {
         this.nom = nom;
         this.listeProduits = new ArrayList<>();
         this.listeEmployes = new ArrayList<>();
     }
+    public int getId() { return id_ray; }
     public String getNom() { return nom; }
     public List<Produit> getListeProduits() { return listeProduits; }
     public List<Employe> getListeEmployes() { return listeEmployes; }

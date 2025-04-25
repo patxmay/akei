@@ -22,27 +22,10 @@
             android:padding="8dp" />
 
         <!-- element Listview pour afficher la Liste des rayons -->
-        <androidx.recyclerview.widget.RecyclerView
+        <ListView
             android:id="@+id/rayonListView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="8dp"/>
-
-        <TextView
-            android:id="@+id/categoryTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Catégorie sélectionnée"
-            android:textSize="18sp"
-            android:textColor="@android:color/black" />
-
-        <TextView
-            android:id="@+id/magasinTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Magasin sélectionnée"
-            android:textSize="18sp"
-            android:textColor="@android:color/black" />
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

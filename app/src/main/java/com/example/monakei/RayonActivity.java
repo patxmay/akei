@@ -1,7 +1,10 @@
 package com.example.monakei;
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
-import android.widget.TextView;
+
+import android.view.View;
+import android.widget.AdapterView;
 import java.util.ArrayList;
 import android.widget.ListView;
 import android.widget.ArrayAdapter;
@@ -9,53 +12,52 @@ import android.database.Cursor;
 
 public class RayonActivity extends AppCompatActivity {
     private ListView rayonListView;
-    private ArrayList<String> rayons;
-    private ArrayAdapter<String> adapter;
+    private ArrayList<Rayon> rayons;
+    private AkeiDatabaseHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //EdgeToEdge.enable(this);
-        ////setContentView(R.layout.activity_rayon); //  lie les éléments de l'interface utilisateur au code de l'activité.
-        /*
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
-        */
-        // Récupérer la catégorie sélectionnée via l'Intent
-        ////String selectedCategory = getIntent().getStringExtra("category");
-        // Trouver le TextView et définir le texte
-        ////TextView textView = findViewById(R.id.categoryTextView);
-        ////textView.setText("Vous avez sélectionné : " + selectedCategory);
-
-        // Initialiser la liste et l'adaptateur
-        //rayons = new ArrayList<>();
-        //rayonListView = findViewById(R.id.rayonListView);
-        //adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, rayons);
-        //rayonListView.setAdapter(adapter);
-        // Charger les rayons depuis la base de données
-        //loadRayonsFromDatabase();
-
         // On récupére le magasin sélectionné via l'intent et l'utiliser
         // pour afficher les rayons associés à ce magasin.
         setContentView(R.layout.activity_rayon);
 
-        // Récupérer le magasin sélectionné
-        String selectedMagasin = getIntent().getStringExtra("selectedMagasin");
+        // Récupérer l'ID du magasin sélectionné à partir de l'intent
+        int selectedMagasinId = getIntent().getIntExtra("selectedMagasinId", -1);
+        String selectedMagasinName = getIntent().getStringExtra("selectedMagasinName");
 
-        // Utiliser le nom du magasin sélectionné pour afficher les rayons
-        TextView magasinTextView = findViewById(R.id.magasinTextView);
-        magasinTextView.setText("Magasin sélectionné : " + selectedMagasin);
+        // Initialiser la base de données
+        dbHelper = new AkeiDatabaseHelper(this);
+        // Initialiser la liste et l'adaptateur
+        rayonListView = findViewById(R.id.rayonListView);
+        // Charger les rayons depuis la base de données pour le magasin sélectionné
+        loadRayonsFromDatabase(selectedMagasinId);
 
-        loadRayonsFromDatabase();
+        // Ajouter un écouteur pour détecter les clics sur les rayons
+        rayonListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Récupérer le rayon sélectionné
+                rayons = dbHelper.getAllRayonsForMagasin(selectedMagasinId);
+                Rayon selectedRayon = rayons.get(position);
+                // Passer l'ID du rayon à produitActivity
+                Intent intent = new Intent(RayonActivity.this, ProduitActivity.class);
+                intent.putExtra("selectedRayonId", selectedRayon.getId());
+                intent.putExtra("selectedRayonnName", selectedRayon.getNom());
+                startActivity(intent);
+            }
+        });
     }
 
-    private void loadRayonsFromDatabase() {
+    private void loadRayonsFromDatabase(int magasinId) {
         AkeiDatabaseHelper dbHelper = new AkeiDatabaseHelper(this);
-        Cursor cursor = dbHelper.getAllRayons();
-
+        Cursor cursor = dbHelper.getRayonsForMagasin(magasinId);
+        // Vérifier si un ID valide a été passé
+        if (magasinId == -1) {
+            // Pas d'ID valide, ne pas charger les données
+            return;
+        }
+        ArrayList rayons = new ArrayList<>();
         if (cursor != null) {
             while (cursor.moveToNext()) {
                 String rayonName = cursor.getString(cursor.getColumnIndexOrThrow("nom"));
@@ -63,8 +65,9 @@ public class RayonActivity extends AppCompatActivity {
             }
             cursor.close();
         }
+        ArrayAdapter<Magasin> adapter;
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, rayons);
+        rayonListView.setAdapter(adapter);
 
-        // Notifier l'adaptateur des nouvelles données
-        adapter.notifyDataSetChanged();
     }
 }

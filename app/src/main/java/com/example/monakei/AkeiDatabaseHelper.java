@@ -9,8 +9,6 @@ import android.util.Log;
 
 import java.util.ArrayList;
 public class AkeiDatabaseHelper extends SQLiteOpenHelper {
-
-
     private static final String DATABASE_NAME = "akei.db";
     private static final int DATABASE_VERSION = 6;
 
@@ -82,26 +80,55 @@ public class AkeiDatabaseHelper extends SQLiteOpenHelper {
     public void deleteData(SQLiteDatabase db) {
         // Supprimer et recréer si version change
         db.execSQL("DELETE FROM vehicule");
+        db.execSQL("DELETE FROM sqlite_sequence WHERE name = 'vehicule'");
         db.execSQL("DELETE FROM employe");
+        db.execSQL("DELETE FROM sqlite_sequence WHERE name = 'employe'");
         db.execSQL("DELETE FROM magasin");
+        db.execSQL("DELETE FROM sqlite_sequence WHERE name = 'magasin'");
         db.execSQL("DELETE FROM rayon");
+        db.execSQL("DELETE FROM sqlite_sequence WHERE name = 'rayon'");
         db.execSQL("DELETE FROM produit");
+        db.execSQL("DELETE FROM sqlite_sequence WHERE name = 'produit'");
     }
-    public Cursor getAllRayons(int magasin) {
+    public Cursor getRayonsForMagasin(int magasinId) {
         SQLiteDatabase db = this.getReadableDatabase();
-        return db.rawQuery("SELECT * FROM rayon wher id_mag="+magasin, null);
+        return db.rawQuery("SELECT * FROM rayon WHERE id_mag = ?", new String[]{String.valueOf(magasinId)});
     }
-    public ArrayList<String> getAllMagasins() {
-        ArrayList<String> magasins = new ArrayList<>();
+    public Cursor getMagasins() {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT nom FROM magasin", null);
+        return db.rawQuery("SELECT * FROM magasin", null);
+    }
+    public Cursor getProduitsForRayon(int rayonId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM produit WHERE id_ray = ?", new String[]{String.valueOf(rayonId)});
+    }
+    public ArrayList<Magasin> getAllMagasins() {
+        ArrayList<Magasin> magasins = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT id_mag, nom FROM magasin", null);
         if (cursor != null) {
             while (cursor.moveToNext()) {
-                magasins.add(cursor.getString(cursor.getColumnIndexOrThrow("nom")));
+                int id = cursor.getInt(cursor.getColumnIndexOrThrow("id_mag"));
+                String nom = cursor.getString(cursor.getColumnIndexOrThrow("nom"));
+                magasins.add(new Magasin(id, nom));
             }
             cursor.close();
         }
         return magasins;
+    }
+    public ArrayList<Rayon> getAllRayonsForMagasin(Integer magasinId) {
+        ArrayList<Rayon> rayons = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM rayon WHERE id_mag = ?", new String[]{String.valueOf(magasinId)});
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                int id = cursor.getInt(cursor.getColumnIndexOrThrow("id_mag"));
+                String nom = cursor.getString(cursor.getColumnIndexOrThrow("nom"));
+                rayons.add(new Rayon(id, nom));
+            }
+            cursor.close();
+        }
+        return rayons;
     }
     public void InsertData(SQLiteDatabase db){
         Cursor cursor;
@@ -109,7 +136,6 @@ public class AkeiDatabaseHelper extends SQLiteOpenHelper {
         int magasinId = -1;
         int rayonId = -1;
 
-        // db.execSQL("INSERT INTO
         // ------------------------
         // magasin
         // ------------------------
